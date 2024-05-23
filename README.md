@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  Functions to resolve comomn problens with ObjectId
+  Inter SDK JS is a library to help you to interact with Inter API
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
 
 # About
 
-Functions to resolve comomn problens with ObjectId
+Inter SDK JS is a library to help you to interact with Inter API
 
 # Install
 
