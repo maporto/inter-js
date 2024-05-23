@@ -2,14 +2,14 @@
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-The following is a set of guidelines for contributing to inter-sdk-js.
+The following is a set of guidelines for contributing to inter-js.
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 ## Code of Conduct
 
 This project and everyone participating in it is governed by a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
-<!-- ## How to contribute to inter-sdk-js -->
+<!-- ## How to contribute to inter-js -->
 
 <!-- TODO -->
 

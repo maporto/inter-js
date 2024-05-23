@@ -1,7 +1,7 @@
 {
-  "name": "inter-sdk-js",
+  "name": "inter-js",
   "version": "1.0.0",
-  "description": "Inter API JS is a library to help you to interact with Inter API.",
+  "description": "Inter JS is a library to help you to interact with Inter API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -31,13 +31,13 @@
   "keywords": [
     "mongoose"
   ],
-  "homepage": "https://github.com/maporto/inter-sdk-js",
+  "homepage": "https://github.com/maporto/inter-js",
   "bugs": {
-    "url": "https://github.com/maporto/inter-sdk-js/issues"
+    "url": "https://github.com/maporto/inter-js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maporto/inter-sdk-js.git"
+    "url": "https://github.com/maporto/inter-js.git"
   },
   "dependencies": {
     "axios": "^1.7.2",
