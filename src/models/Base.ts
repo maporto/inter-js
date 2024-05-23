@@ -11,7 +11,7 @@ export default abstract class Base {
     return this
   }
 
-  // methos to use extened classes to create instace and call validate method
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public static create<T extends Base>(this: new (...args: any[]) => T, ...args: any[]): T {
     return new this(...args).validate()
   }

@@ -2,7 +2,6 @@ import InterApi from '../src/main'
 import nock from 'nock'
 import { url } from '../src/config'
 import { CobrancaInterface } from '../src/models'
-import { EnumTipoPessoa, EnumUF } from '../src/models/Pagador'
 import { ValidationError } from 'class-validator'
 
 beforeAll(() => {
@@ -45,8 +44,8 @@ describe('Can use Cobranca service', () => {
         complemento: '',
         bairro: 'Bairro Tal',
         cidade: 'São Paulo',
-        uf: EnumUF.SP,
-        tipoPessoa: EnumTipoPessoa.FISICA
+        uf: 'SP',
+        tipoPessoa: 'FISICA'
       }
     }
 
@@ -72,8 +71,8 @@ describe('Can use Cobranca service', () => {
         complemento: '',
         bairro: 'Bairro Tal',
         cidade: 'São Paulo',
-        uf: EnumUF.SP,
-        tipoPessoa: EnumTipoPessoa.FISICA
+        uf: 'SP',
+        tipoPessoa: 'FISICA'
       }
     }
 

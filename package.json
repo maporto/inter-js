@@ -12,8 +12,8 @@
     "/dist"
   ],
   "scripts": {
-    "lint": "eslint . && npm run lint:lockfile",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint ./src/**/* ./__tests__/**/* && npm run lint:lockfile",
+    "lint:fix": "eslint ./src/**/* ./__tests__/**/* --fix",
     "format": "prettier --config .prettierrc.json --write '**/*.ts'",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch",
@@ -49,6 +49,7 @@
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@eslint/js": "^9.3.0",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
@@ -56,10 +57,10 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/jest": "^29.5.12",
-    "eslint": "^8.33.0",
-    "eslint-plugin-jest": "^27.2.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-security": "^1.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-standard": "^4.1.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
@@ -69,7 +70,8 @@
     "open-cli": "^7.1.0",
     "prettier": "^2.8.3",
     "ts-jest": "^29.1.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.10.0"
   },
   "jest": {
     "testEnvironment": "node",
@@ -127,7 +129,9 @@
     ]
   },
   "eslintIgnore": [
-    "coverage/**"
+    "coverage/**/*",
+    "dist/**/*",
+    "node_modules/**/*"
   ],
   "babel": {
     "plugins": [
@@ -136,44 +140,20 @@
   },
   "eslintConfig": {
     "plugins": [
-      "node",
-      "security",
-      "jest"
+      "@typescript-eslint"
     ],
     "extends": [
-      "plugin:node/recommended"
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-      "node/no-unsupported-features/es-syntax": [
-        "error",
-        {
-          "ignores": [
-            "dynamicImport",
-            "modules"
-          ]
-        }
-      ],
       "no-process-exit": "warn",
-      "jest/no-disabled-tests": "error",
-      "jest/no-focused-tests": "error",
-      "jest/no-identical-title": "error",
       "node/no-unsupported-features": "off",
       "node/no-unpublished-require": "off",
-      "security/detect-non-literal-fs-filename": "error",
-      "security/detect-unsafe-regex": "error",
-      "security/detect-buffer-noassert": "error",
-      "security/detect-child-process": "error",
-      "security/detect-disable-mustache-escape": "error",
-      "security/detect-eval-with-expression": "error",
-      "security/detect-no-csrf-before-method-override": "error",
-      "security/detect-non-literal-regexp": "error",
-      "security/detect-object-injection": "warn",
-      "security/detect-possible-timing-attacks": "error",
-      "security/detect-pseudoRandomBytes": "error",
       "space-before-function-paren": "off",
       "object-curly-spacing": "off"
     },
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "sourceType": "module",
       "ecmaFeatures": {

@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import { RequestCredential } from '../interface'
 import { Agent } from 'https'
+import Base from '../models/Base'
 
 export default class BaseService {
   protected baseUrl: string
@@ -11,11 +12,11 @@ export default class BaseService {
     this.credential = credential
   }
 
-  public async post(path: string, data: any): Promise<AxiosResponse> {
+  public async post(path: string, data: Base): Promise<AxiosResponse> {
     return axios(this.mountRequestConfig(path, 'POST', data))
   }
 
-  public async put(path: string, data: any): Promise<AxiosResponse> {
+  public async put(path: string, data: Base): Promise<AxiosResponse> {
     return axios(this.mountRequestConfig(path, 'PUT', data))
   }
 
@@ -27,7 +28,7 @@ export default class BaseService {
     return axios(this.mountRequestConfig(path, 'DELETE'))
   }
 
-  private mountRequestConfig(path: string, method: Method = 'GET', data?: any): AxiosRequestConfig {
+  private mountRequestConfig(path: string, method: Method = 'GET', data?: Base): AxiosRequestConfig {
     const requestConfig: AxiosRequestConfig = {
       url: `${this.baseUrl}${path}`,
       method,

@@ -1,40 +1,8 @@
 import { MinLength, MaxLength, IsEmail, IsOptional } from 'class-validator'
 import Base from './Base'
 
-export enum EnumUF {
-  AC = 'AC',
-  AL = 'AL',
-  AP = 'AP',
-  AM = 'AM',
-  BA = 'BA',
-  CE = 'CE',
-  DF = 'DF',
-  ES = 'ES',
-  GO = 'GO',
-  MA = 'MA',
-  MT = 'MT',
-  MS = 'MS',
-  MG = 'MG',
-  PA = 'PA',
-  PB = 'PB',
-  PR = 'PR',
-  PE = 'PE',
-  PI = 'PI',
-  RJ = 'RJ',
-  RN = 'RN',
-  RS = 'RS',
-  RO = 'RO',
-  RR = 'RR',
-  SC = 'SC',
-  SP = 'SP',
-  SE = 'SE',
-  TO = 'TO'
-}
-
-export enum EnumTipoPessoa {
-  FISICA = 'FISICA',
-  JURIDICA = 'JURIDICA'
-}
+export type EnumUFType = 'AC' | 'AL' | 'AP' | 'AM' | 'BA' | 'CE' | 'DF' | 'ES' | 'GO' | 'MA' | 'MT' | 'MS' | 'MG' | 'PA' | 'PB' | 'PR' | 'PE' | 'PI' | 'RJ' | 'RN' | 'RS' | 'RO' | 'RR' | 'SC' | 'SP' | 'SE' | 'TO'
+export type EnumTipoPessoaType = 'FISICA' | 'JURIDICA'
 
 export interface PagadorInterface {
   email?: string
@@ -44,11 +12,11 @@ export interface PagadorInterface {
   numero?: string
   complemento?: string
   cpfCnpj: string
-  tipoPessoa: EnumTipoPessoa
+  tipoPessoa: EnumTipoPessoaType
   endereco: string
   bairro?: string
   cidade: string
-  uf: EnumUF
+  uf: EnumUFType
   cep: string
 }
 
@@ -160,12 +128,12 @@ export default class Pagador extends Base {
    * FISICA - Pessoa Física
    * JURIDICA - Pessoa Jurídica
    *
-   * @type {EnumTipoPessoa}
+   * @type {EnumTipoPessoaType}
    * @memberof Pagador
    * @required
    *
    */
-  public tipoPessoa: EnumTipoPessoa
+  public tipoPessoa: EnumTipoPessoaType
 
   /**
    * Endereço do pagador
@@ -214,12 +182,12 @@ export default class Pagador extends Base {
   /**
    * UF
    *
-   * @type {EnumUF}
+   * @type {EnumUFType}
    * @memberof Pagador
    * @required
    *
    */
-  public uf: EnumUF
+  public uf: EnumUFType
 
   /**
    * CEP do pagador
