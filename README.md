@@ -12,7 +12,7 @@
   <a href="https://www.npmjs.org/package/inter-sdk-js"><img src="https://badgen.net/npm/license/inter-sdk-js" alt="license"/></a>
   <a href="https://www.npmjs.org/package/inter-sdk-js"><img src="https://badgen.net/npm/dt/inter-sdk-js" alt="downloads"/></a>
   <a href="https://github.com/maporto/inter-sdk-js/actions?workflow=CI"><img src="https://github.com/maporto/inter-sdk-js/workflows/CI/badge.svg" alt="build"/></a>
-  <a href="https://codecov.io/gh/maporto/inter-sdk-js"><img src="https://codecov.io/gh/maporto/inter-sdk-js/graph/badge.svg?token=DOS32MRBW3" alt="codecov"/></a>
+  <a href="https://codecov.io/gh/maporto/inter-sdk-js"><img src="https://codecov.io/gh/maporto/inter-sdk-js/graph/badge.svg?token=VUCHDC63EJ" alt="codecov"/></a>
   <a href="https://snyk.io/test/github/maporto/inter-sdk-js"><img src="https://snyk.io/test/github/maporto/inter-sdk-js/badge.svg" alt="Known Vulnerabilities"/></a>
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
 </p>
@@ -30,58 +30,58 @@ npm install --save inter-sdk-js
 # Usage
 
 ```js
-const { isObjectId, extractIdString, extractIdObjectId } = require('inter-sdk-js')
+const sdk = require('inter-sdk-js')
+const cert = 'your-cert';
+const key = 'your-key';
+const production = false;
+
+const InterApi = sdk.init(cert, key, production)
 ```
 
 # Example
 
 # API
 
-## isObjectId
+## create Cobrança
 ```js
-const { isObjectId } = require('inter-sdk-js')
+  const cobranca = {
+    seuNumero: '123',
+    valorNominal: 2.5,
+    dataVencimento: new Date(),
+    numDiasAgenda: 0,
+    pagador: {
+      cpfCnpj: '12345678909',
+      nome: 'Fulano de Tal',
+      ddd: '11',
+      telefone: '123456789',
+      cep: '12345678',
+      endereco: 'Rua Tal',
+      numero: '123',
+      complemento: '',
+      bairro: 'Bairro Tal',
+      cidade: 'São Paulo',
+      uf: 'SP',
+      tipoPessoa: 'FISICA'
+    }
+  }
 
-const id = '5e4e2f3b8a4f4c001e0e4c2d'
+  const response = await InterApi.cobranca.create(cobranca);
 
-console.log(isObjectId(id))
+  console.log(response)
 
-// Output: true
+  // Output { codigoSolicitacao: '123' }
 ```
 
-## extractIdString
+## update/create webhook
 ```js
-const { extractIdString } = require('inter-sdk-js')
+  const webhook = {
+    webhookUrl: 'https://example.com'
+  }
 
-const idString = '5e4e2f3b8a4f4c001e0e4c2d'
-const idInDocument = {
-  _id: '5e4e2f3b8a4f4c001e0e4c2d'
-}
+  const response = await InterApi.cobranca.updateWebhook(webhook);
 
-console.log(extractIdString(id))
-
-// Output: 5e4e2f3b8a4f4c001e0e4c2d
-
-console.log(extractIdString(idInDocument))
-
-// Output: 5e4e2f3b8a4f4c001e0e4c2d
-```
-
-## extractIdObjectId
-```js
-const { extractIdObjectId } = require('inter-sdk-js')
-
-const idString = '5e4e2f3b8a4f4c001e0e4c2d'
-const idInDocument = {
-  _id: '5e4e2f3b8a4f4c001e0e4c2d'
-}
-
-console.log(extractIdObjectId(id))
-
-// Output: ObjectId('5e4e2f3b8a4f4c001e0e4c2d')
-
-console.log(extractIdObjectId(idInDocument))
-
-// Output: ObjectId('5e4e2f3b8a4f4c001e0e4c2d')
+  console.log(response)
+  // Output { webhookUrl: 'https://example.com'}
 ```
 
 # Contributing

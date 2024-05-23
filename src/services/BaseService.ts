@@ -28,7 +28,11 @@ export default class BaseService {
     return axios(this.mountRequestConfig(path, 'DELETE'))
   }
 
-  private mountRequestConfig(path: string, method: Method = 'GET', data?: Base): AxiosRequestConfig {
+  private mountRequestConfig(
+    path: string,
+    method: Method = 'GET',
+    data?: Base
+  ): AxiosRequestConfig {
     const requestConfig: AxiosRequestConfig = {
       url: `${this.baseUrl}${path}`,
       method,
