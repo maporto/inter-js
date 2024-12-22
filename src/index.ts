@@ -26,7 +26,7 @@ export default class InterApi {
 
   private async generateToken(): Promise<void> {
     const { access_token } = await this.oauth.create()
-    this.credentials.acces_token = access_token
+    this.credentials.access_token = access_token
   }
 
   private static getBaseUrl(production: boolean): string {

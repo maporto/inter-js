@@ -8,6 +8,7 @@ export interface CreateCobrancaResponse {
 export default class CobrancaService extends BaseService {
   private paths = {
     create: '/cobranca/v3/cobrancas',
+    get: '/cobranca/v3/cobrancas',
     updateWebhook: '/cobranca/v3/cobrancas/webhook',
     getWebhook: '/cobranca/v3/cobrancas/webhook',
     deleteWebhook: '/cobranca/v3/cobrancas/webhook'
@@ -37,5 +38,9 @@ export default class CobrancaService extends BaseService {
 
   public async deleteWebhook(): Promise<object> {
     return this.delete(this.paths.deleteWebhook).then(({ data }) => data)
+  }
+
+  public async getCobranca(codigoSolicitacao: string): Promise<object> {
+    return this.get(`${this.paths.get}/${codigoSolicitacao}`).then(({ data }) => data)
   }
 }

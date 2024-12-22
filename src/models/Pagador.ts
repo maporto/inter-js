@@ -58,9 +58,9 @@ export default class Pagador extends Base {
    * @MaxLength 50
    *
    */
+  @IsOptional()
   @MaxLength(50)
   @IsEmail()
-  @IsOptional()
   public email: string | undefined
 
   /**
@@ -88,8 +88,8 @@ export default class Pagador extends Base {
    * @MaxLength 2
    *
    */
-  @MaxLength(2)
   @IsOptional()
+  @MaxLength(2)
   public ddd: string | undefined
 
   /**

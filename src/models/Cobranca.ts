@@ -1,11 +1,11 @@
-import { IsInt, IsDate, Min, Length, ValidateNested } from 'class-validator'
+import { IsInt, Min, Length, ValidateNested, IsOptional, IsDateString } from 'class-validator'
 import Pagador, { PagadorInterface } from './Pagador'
 import Base from './Base'
 
 export interface CobrancaInterface {
   seuNumero: string
   valorNominal: number
-  dataVencimento: Date
+  dataVencimento: Date | string
   numDiasAgenda: number
   pagador: PagadorInterface
 }
@@ -47,8 +47,8 @@ export default class Cobranca extends Base {
    * @required
    *
    */
-  @IsDate()
-  public dataVencimento: Date
+  @IsDateString()
+  public dataVencimento: Date | string
 
   /**
    * Número de dias corridos após o vencimento para o cancelamento efetivo automático da cobrança. (de 0 até 60)
@@ -62,6 +62,7 @@ export default class Cobranca extends Base {
    *
    */
   @IsInt()
+  @IsOptional()
   public numDiasAgenda: number
 
   /**
@@ -79,8 +80,14 @@ export default class Cobranca extends Base {
     super()
     this.seuNumero = cobranca.seuNumero
     this.valorNominal = cobranca.valorNominal
-    this.dataVencimento = cobranca.dataVencimento
-    this.numDiasAgenda = cobranca.numDiasAgenda
+
+    if (cobranca.dataVencimento instanceof Date) {
+      this.dataVencimento = cobranca.dataVencimento.toISOString().split('T')[0]
+    } else {
+      this.dataVencimento = cobranca.dataVencimento
+    }
+
+    this.numDiasAgenda = cobranca.numDiasAgenda ?? 0
     this.pagador = Pagador.create(cobranca.pagador)
 
     return this

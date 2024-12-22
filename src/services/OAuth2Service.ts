@@ -1,5 +1,5 @@
 import { TokenInterface } from '../models'
-import BaseService from './BaseService'
+import BaseService, { RequestContentType } from './BaseService'
 
 export interface TokenResponse {
   access_token: string
@@ -21,6 +21,6 @@ export default class OAuth2Service extends BaseService {
       scope: this.credentials.scopes.join(' ')
     } as TokenInterface
 
-    return this.post(this.paths.token, tokenBody).then(({ data }) => data)
+    return this.post(this.paths.token, tokenBody, RequestContentType.FORM).then(({ data }) => data)
   }
 }

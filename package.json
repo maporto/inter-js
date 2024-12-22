@@ -1,6 +1,6 @@
 {
   "name": "inter-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inter JS is a library to help you to interact with Inter API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,8 +11,8 @@
     "/dist"
   ],
   "scripts": {
-    "lint": "eslint ./src/**/* ./__tests__/**/* && npm run lint:lockfile",
-    "lint:fix": "eslint ./src/**/* ./__tests__/**/* --fix",
+    "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts && npm run lint:lockfile",
+    "lint:fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts --fix",
     "format": "prettier --config .prettierrc.json --write '**/*.ts'",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch",
@@ -73,6 +73,9 @@
     "typescript-eslint": "^7.10.0"
   },
   "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ],
     "testEnvironment": "node",
     "verbose": true,
     "transform": {
