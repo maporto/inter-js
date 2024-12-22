@@ -3,6 +3,13 @@ import nock from 'nock'
 import { url } from '../src/config'
 import { CobrancaInterface } from '../src/models'
 import { ValidationError } from 'class-validator'
+import { CredentialScope } from '../src/interface/CredentialScope'
+
+const sampleCert = {
+  client_id: 'client_id',
+  client_secret: 'client_secret',
+  scopes: [CredentialScope.COB_READ]
+}
 
 beforeAll(() => {
   nock.disableNetConnect()
@@ -10,18 +17,18 @@ beforeAll(() => {
 
 describe('Can init app', () => {
   it('should init app', async () => {
-    const app = InterApi.init('cert', 'key')
+    const app = await InterApi.init(sampleCert)
     expect(app).toBeInstanceOf(InterApi)
   })
 
   it('should init app production', async () => {
-    const app = InterApi.init('cert', 'key', true)
+    const app = await InterApi.init(sampleCert, true)
     expect(app).toBeInstanceOf(InterApi)
   })
 })
 
-describe('Can use Cobranca service', () => {
-  const app = InterApi.init('cert', 'key')
+describe('Can use Cobranca service', async () => {
+  const app = await InterApi.init(sampleCert)
 
   it('should create cobranca', async () => {
     nock(url.sandbox).post('/cobranca/v3/cobrancas').reply(200, {

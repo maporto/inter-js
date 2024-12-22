@@ -1,6 +1,7 @@
 import Cobranca, { CobrancaInterface } from './Cobranca'
 import Pagador, { PagadorInterface } from './Pagador'
 import CobrancaWebhook, { CobrancaWebhookInterface } from './CobrancaWebhook'
+import { TokenInterface } from './Token'
 
 export {
   Cobranca,
@@ -8,5 +9,6 @@ export {
   Pagador,
   PagadorInterface,
   CobrancaWebhook,
-  CobrancaWebhookInterface
+  CobrancaWebhookInterface,
+  TokenInterface
 }

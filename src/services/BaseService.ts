@@ -1,22 +1,22 @@
+/* eslint-disable */
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import { RequestCredential } from '../interface'
-import { Agent } from 'https'
 import Base from '../models/Base'
 
 export default class BaseService {
   protected baseUrl: string
-  protected credential: RequestCredential
+  protected credentials: RequestCredential
 
-  constructor(baseURL: string, credential: RequestCredential) {
+  constructor(baseURL: string, credentials: RequestCredential) {
     this.baseUrl = baseURL
-    this.credential = credential
+    this.credentials = credentials
   }
 
-  public async post(path: string, data: Base): Promise<AxiosResponse> {
+  public async post(path: string, data: Base | any): Promise<AxiosResponse> {
     return axios(this.mountRequestConfig(path, 'POST', data))
   }
 
-  public async put(path: string, data: Base): Promise<AxiosResponse> {
+  public async put(path: string, data: Base | any): Promise<AxiosResponse> {
     return axios(this.mountRequestConfig(path, 'PUT', data))
   }
 
@@ -38,11 +38,7 @@ export default class BaseService {
       method,
       headers: {
         'Content-Type': 'application/json'
-      },
-      httpsAgent: new Agent({
-        cert: this.credential.cert,
-        key: this.credential.key
-      })
+      }
     }
 
     if (data) {

@@ -1,4 +1,8 @@
+import { CredentialScope } from './CredentialScope'
+
 export default interface RequestCredential {
-  cert: string
-  key: string
+  client_id: string
+  client_secret: string
+  scopes: Array<CredentialScope>
+  acces_token?: string
 }
