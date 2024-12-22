@@ -21,7 +21,7 @@ export default [
       {
         file: 'dist/index.cjs',
         format: 'cjs',
-        exports: 'named'
+        exports: 'default'
       }
     ]
   },
