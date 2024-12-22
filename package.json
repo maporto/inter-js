@@ -1,6 +1,6 @@
 {
   "name": "inter-js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Inter JS is a library to help you to interact with Inter API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
