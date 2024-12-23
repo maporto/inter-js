@@ -31,11 +31,19 @@ npm install --save inter-js
 
 ```js
 const sdk = require('inter-js')
-const cert = 'your-cert';
-const key = 'your-key';
+
+const credentials = {
+  client_id: 'client_id',
+  client_secret: 'client_secret',
+  scopes: [CredentialScope.COB_READ],
+  certificate: {
+    certificate: fs.readFileSync(path.resolve(__dirname, 'certificate.crt'), 'utf8'),
+    key: fs.readFileSync(path.resolve(__dirname, 'certificate.key'), 'utf8')
+  }
+}
 const production = false;
 
-const InterApi = sdk.init(cert, key, production)
+const InterApi = await sdk.init(credentials, production)
 ```
 
 # Example
@@ -51,14 +59,14 @@ const InterApi = sdk.init(cert, key, production)
     numDiasAgenda: 0,
     pagador: {
       cpfCnpj: '12345678909',
-      nome: 'Fulano de Tal',
+      nome: 'Nome da Pessoa',
       ddd: '11',
       telefone: '123456789',
       cep: '12345678',
-      endereco: 'Rua Tal',
+      endereco: 'Rua 1',
       numero: '123',
       complemento: '',
-      bairro: 'Bairro Tal',
+      bairro: 'Bairro',
       cidade: 'São Paulo',
       uf: 'SP',
       tipoPessoa: 'FISICA'
@@ -70,6 +78,14 @@ const InterApi = sdk.init(cert, key, production)
   console.log(response)
 
   // Output { codigoSolicitacao: '123' }
+```
+
+
+## get Cobrança
+```js
+  const codigoSolicitacao = '123'; 
+
+  const response = await InterApi.cobranca.getCobranca(codigoSolicitacao);
 ```
 
 ## update/create webhook
